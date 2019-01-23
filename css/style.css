@@ -1,0 +1,19 @@
+div.card-pile {
+  display: inline-block;
+  width: 20%;
+  height: 400px;
+  border: 1px solid gray;
+}
+
+.dragging
+{
+  opacity: 0.2;
+}
+
+#unused {
+  /*width: 25%;*/
+}
+
+#unused .ability-card {
+  display: inline-block;
+}

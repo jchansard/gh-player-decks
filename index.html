@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8"/>
+ <html lang="en">
+    <head>
+      <title>player decks</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+      <img id="test" src="assets/test.png"/>
+      <div id="container">
+        <header>
+        </header>
+        <div id="content">
+          <div id="unused" class="card-pile" ondrop="dropped(event);" ondragover="dragover_handler(event);"></div>
+          <div id="hand" class="card-pile" ondrop="dropped(event);" ondragover="dragover_handler(event);"></div>
+          <div id="active" class="card-pile" ondrop="dropped(event);" ondragover="dragover_handler(event);"></div>
+          <div id="discard" class="card-pile" ondrop="dropped(event);" ondragover="dragover_handler(event);"></div>
+          <div id="lost" class="card-pile" ondrop="dropped(event);" ondragover="dragover_handler(event);"></div>
+      </div>
+      <script src="data/cards.js"></script>
+      <script src="js/main.js"></script>
+    </body>
+  </html>
+<script>
