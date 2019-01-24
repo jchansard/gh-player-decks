@@ -26,8 +26,8 @@ function moveDragImage(event)
   let dragImageElement = document.getElementById("drag-image");
   if (!dragImageElement || dragImageElement.classList.contains("invisible")) return;
   // todo: assumptions
-  dragImageElement.style.setProperty("top", event.y - 100 + "px");
-  dragImageElement.style.setProperty("left", event.x -200 + "px");
+  dragImageElement.style.setProperty("top", event.pageY - 100 + "px");
+  dragImageElement.style.setProperty("left", event.pageX -200 + "px");
 
 }
 
@@ -37,8 +37,9 @@ function cardDragged(event)
   if (dragImage)
   {
       //todo: assumptions
-      dragImage.style.setProperty("top", event.y - 100 + "px");
-      dragImage.style.setProperty("left", event.x -200 + "px");
+      console.dir(event);
+      dragImage.style.setProperty("top", event.pageY - 100 + "px");
+      dragImage.style.setProperty("left", event.pageX -200 + "px");
       dragImage.classList.remove("invisible");
       dragImage.appendChild(event.target.cloneNode(false));
   }
