@@ -5,7 +5,8 @@
       <title>player decks</title>
       <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body>
+    <body ondragover="moveDragImage(event)">
+      <div id="drag-image" class="invisible"></div>
       <img id="test" src="assets/test.png"/>
       <div id="container">
         <header>

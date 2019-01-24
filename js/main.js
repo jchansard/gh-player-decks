@@ -12,7 +12,7 @@ function main(cardInfo)
     card.classList.add("ability-card");
     card.setAttribute("draggable", "true");
     card.setAttribute("ondragstart", "cardDragged(event)");
-    card.setAttribute("ondragend", "cardDropped(event)")
+    card.setAttribute("ondragend", "cardDragEnd(event)")
     card.style.setProperty("background-image", `url(assets/${key}/${key}_${cardNum}.jpg)`);
     card.style.setProperty("height", `${swCardInfo.height}px`);
     card.style.setProperty("width", `${swCardInfo.width}px`);
@@ -21,21 +21,45 @@ function main(cardInfo)
   }
 }
 
+function moveDragImage(event)
+{
+  let dragImageElement = document.getElementById("drag-image");
+  if (!dragImageElement || dragImageElement.classList.contains("invisible")) return;
+  // todo: assumptions
+  dragImageElement.style.setProperty("top", event.y - 100 + "px");
+  dragImageElement.style.setProperty("left", event.x -200 + "px");
+
+}
+
 function cardDragged(event)
 {
+  let dragImage = document.getElementById("drag-image");
+  if (dragImage)
+  {
+      //todo: assumptions
+      dragImage.style.setProperty("top", event.y - 100 + "px");
+      dragImage.style.setProperty("left", event.x -200 + "px");
+      dragImage.classList.remove("invisible");
+      dragImage.appendChild(event.target.cloneNode(false));
+  }
+
   event.target.classList.add("dragging");
   event.dataTransfer.setData("text/plain", event.target.id);
   event.dataTransfer.dropEffect = "move";
 
   let img = new Image();
-  // todo: assumptions
-  img.src = `assets/sw/${event.target.id.replace("-","_")}.jpg`;
-  event.dataTransfer.setDragImage(img, 200, 275)
+  event.dataTransfer.setDragImage(img, 0, 0)
 }
 
-function cardDropped(event)
+function cardDragEnd(event)
 {
   event.target.classList.remove("dragging");
+  let dragImage = document.getElementById("drag-image");
+  if (dragImage)
+  {
+    dragImage.classList.add("invisible");
+    dragImage.firstChild.remove();
+  }
 }
 
 function dropped(event)
